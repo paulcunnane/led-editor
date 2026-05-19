@@ -18,6 +18,7 @@ const config = computed(() => {
 </script>
 
 <template>
+    <h2>Configuration</h2>
     <div class="lights-data">{{ config }}</div>
 </template>
 

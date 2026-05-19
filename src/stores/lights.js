@@ -1,3 +1,4 @@
+import { LaThListSolid } from 'oh-vue-icons/icons'
 import { defineStore } from 'pinia'
 
 export const useLightStore = defineStore('lights', {
@@ -78,8 +79,11 @@ export const useLightStore = defineStore('lights', {
       const [item] = this.lights.splice(index, 1)
       this.lights.splice(index + 1, 0, item)
     },
-    delete(index) {
+    deleteLight(index) {
       this.lights.splice(index, 1)
+    },
+    addLight(light) {
+      this.lights.push(light)
     },
   },
 })
