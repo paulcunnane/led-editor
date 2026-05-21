@@ -3,7 +3,7 @@ import { defineEmits } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useLightStore } from '@/stores/lights'
 
-const emit = defineEmits(['copy']);
+const emit = defineEmits(['copy', 'edit']);
 
 // Properties
 const { light, index } = defineProps(['light', 'index']);
@@ -19,8 +19,8 @@ function confirmDelete() {
 </script>
 
 <template>
-    <div role="group">
-        <button title="edit"><v-icon name="fa-pencil-alt" /></button>
+    <div>
+        <button title="edit"><v-icon name="fa-pencil-alt" @click="emit('edit')" /></button>
         <button title="move up" :disabled="index == 0" @click="moveUp(index)">
             <v-icon name="bi-arrow-up-circle" />
         </button>

@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useLightStore } from '@/stores/lights'
-import colourToRGB from './utils';
+import { colourToRGB } from './utils';
 const store = useLightStore();
 const { lights } = storeToRefs(store)
 

@@ -85,5 +85,11 @@ export const useLightStore = defineStore('lights', {
     addLight(light) {
       this.lights.push(light)
     },
+    updateLight(light) {
+      this.lights = this.lights.map((l) => {
+        if (l.name == light.name) return light
+        return l
+      })
+    },
   },
 })

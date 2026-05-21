@@ -1,10 +1,10 @@
 <script setup>
-import LightHeader from './LightHeader.vue';
 import LightButtons from './LightButtons.vue';
+import LightEditor from './LightEditor.vue';
+import LightHeader from './LightHeader.vue';
 import NameEntry from './NameEntry.vue';
 
 import { ref, computed } from 'vue';
-// import { storeToRefs } from 'pinia';
 import { useLightStore } from '@/stores/lights';
 
 const store = useLightStore();
@@ -16,10 +16,11 @@ const { light, index } = defineProps(['light', 'index'])
 // Refs
 const open = ref(false);
 const copying = ref(false);
+const editing = ref(false);
 
 // Computed
 const showButtons = computed(() => {
-    if (copying.value) return false;
+    if (copying.value || editing.value) return false;
     return open.value;
 })
 
@@ -33,6 +34,7 @@ function add(name) {
 }
 function cancel() {
     copying.value = false;
+    editing.value = false;
 }
 
 </script>
@@ -40,8 +42,10 @@ function cancel() {
 <template>
     <div class="card">
         <LightHeader :light="light" @click="open = !open" />
-        <LightButtons v-show="showButtons" :light="light" :index="index" @copy="copying = true" />
+        <LightButtons v-show="showButtons" :light="light" :index="index" @edit="editing = true"
+            @copy="copying = true" />
         <NameEntry v-if="copying" @add="add" @cancel="cancel" />
+        <LightEditor v-if="editing" :light="light" @cancel="cancel" />
     </div>
 </template>
 

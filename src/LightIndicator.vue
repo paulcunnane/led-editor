@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue';
-import colourToRGB from './utils';
+import { colourToRGB } from './utils';
 const { pattern, fade } = defineProps({
     pattern: Array,
     fade: Number,
